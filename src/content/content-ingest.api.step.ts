@@ -9,10 +9,6 @@ export const config: ApiRouteConfig = {
   description: 'Receives raw input for content processing and emits process-content event',
   emits: ['process-content'],
   flows: ['content-flow'],
-  requestSchema: z.object({
-    inputText: z.string(),
-    metadata: z.record(z.unknown()).optional()
-  }),
   responseSchema: {
     200: z.object({
       requestId: z.string(),

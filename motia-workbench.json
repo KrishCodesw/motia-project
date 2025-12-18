@@ -1,28 +1,5 @@
 [
   {
-    "id": "content-flow",
-    "config": {
-      "src/content/content-ingest.api.step.ts": {
-        "x": 0,
-        "y": 0,
-        "sourceHandlePosition": "right"
-      },
-      "src/content/process-content.event.step.ts": {
-        "x": 420,
-        "y": 20
-      }
-    }
-  },
-  {
-    "id": "supervisor-flow",
-    "config": {
-      "src/supervisor/supervisor-agent.event.step.ts": {
-        "x": 840,
-        "y": 20
-      }
-    }
-  },
-  {
     "id": "hello-world-flow",
     "config": {
       "src\\hello\\process-greeting.step.ts": {
@@ -32,6 +9,32 @@
       "src\\hello\\hello-api.step.ts": {
         "x": 0,
         "y": 0
+      }
+    }
+  },
+  {
+    "id": "supervisor-flow",
+    "config": {
+      "src\\supervisor\\supervisor-agent.event.step.ts": {
+        "x": -219,
+        "y": 0
+      }
+    }
+  },
+  {
+    "id": "content-flow",
+    "config": {
+      "src\\content\\supervisor-agent.event.step.ts": {
+        "x": 347,
+        "y": 60
+      },
+      "src\\content\\process-content.event.step.ts": {
+        "x": 604,
+        "y": 347
+      },
+      "src\\content\\content-ingest.api.step.ts": {
+        "x": 0,
+        "y": 156
       }
     }
   }

@@ -12,9 +12,12 @@ declare module 'motia' {
   }
 
   interface Handlers {
+    'SupervisorAgent': EventHandler<{ requestId: string; group: string; error: { message: string; code: string }; originalInput: unknown; attempt?: number }, { topic: 'process-content'; data: { requestId?: string; inputText: string; metadata?: unknown } }>
     'ProcessGreeting': EventHandler<{ timestamp: string; appName: string; greetingPrefix: string; requestId: string }, never>
     'HelloAPI': ApiRouteHandler<Record<string, unknown>, ApiResponse<200, { message: string; status: string; appName: string }>, { topic: 'process-greeting'; data: { timestamp: string; appName: string; greetingPrefix: string; requestId: string } }>
-    'SupervisorAgent': EventHandler<{ requestId: string; group: string; error: { message: string; code: string }; originalInput: unknown; attempt?: number }, never>
+    'ProcessContent': EventHandler<{ requestId?: string; inputText: string; metadata?: unknown }, { topic: 'supervisor-alert'; data: never }>
+    'JobStatusAPI': ApiRouteHandler<Record<string, unknown>, ApiResponse<200, { requestId: string; status: string; attempts?: number; result?: unknown; suspendedReason?: unknown }>, never>
+    'ContentIngestAPI': ApiRouteHandler<Record<string, unknown>, ApiResponse<200, { requestId: string; status: string }>, { topic: 'process-content'; data: { requestId?: string; inputText: string; metadata?: unknown } }>
   }
     
 }
