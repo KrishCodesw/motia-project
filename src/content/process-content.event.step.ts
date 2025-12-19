@@ -14,7 +14,7 @@ export const config: EventConfig = {
   type: 'event',
   description: 'Processes content using AI provider (primary/fallback)',
   subscribes: ['process-content'],
-  emits: ['supervisor-alert'],
+  emits: ['supervisor-alert', 'content-processed'],
   flows: ['content-flow'],
   input: inputSchema
 };
@@ -59,7 +59,15 @@ export const handler: Handlers['ProcessContent'] = async (input, { logger, state
       status: 'done',
       completedAt: new Date().toISOString()
     });
+
     logger.info('ProcessContent: success', { requestId, provider });
+
+    // Emit a follow-up event so downstream steps can enrich / publish
+    await emit({
+      topic: 'content-processed',
+      data: { requestId, result, metadata }
+    });
+
     return;
   } catch (err: any) {
     // Enhanced error handling: log stack and prepare structured error for supervisor

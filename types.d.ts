@@ -13,11 +13,21 @@ declare module 'motia' {
 
   interface Handlers {
     'SupervisorAgent': EventHandler<{ requestId: string; group: string; error: { message: string; code: string }; originalInput: unknown; attempt?: number }, { topic: 'process-content'; data: { requestId?: string; inputText: string; metadata?: unknown } }>
+    'NotifyOnPublish': EventHandler<{ requestId: string; location: string }, never>
+    'MetricsAPI': ApiRouteHandler<Record<string, unknown>, ApiResponse<200, string>, never>
     'ProcessGreeting': EventHandler<{ timestamp: string; appName: string; greetingPrefix: string; requestId: string }, never>
     'HelloAPI': ApiRouteHandler<Record<string, unknown>, ApiResponse<200, { message: string; status: string; appName: string }>, { topic: 'process-greeting'; data: { timestamp: string; appName: string; greetingPrefix: string; requestId: string } }>
-    'ProcessContent': EventHandler<{ requestId?: string; inputText: string; metadata?: unknown }, { topic: 'supervisor-alert'; data: never }>
+    'HealthAPI': ApiRouteHandler<Record<string, unknown>, ApiResponse<200, { status: string; uptime: number; provider: string; appName: string }>, never>
+    'SummarizeContent': EventHandler<{ requestId: string; metadata?: unknown }, { topic: 'content-summarized'; data: { requestId: string; summary?: { text: string } } }>
+    'PublishContent': EventHandler<{ requestId: string }, { topic: 'content-published'; data: { requestId: string; location: string } }>
+    'ProcessContent': EventHandler<{ requestId?: string; inputText: string; metadata?: unknown }, { topic: 'supervisor-alert'; data: { requestId: string; group: string; error: { message: string; code: string }; originalInput: unknown; attempt?: number } } | { topic: 'content-processed'; data: { requestId: string; result?: { text: string; provider: string; raw?: unknown }; metadata?: unknown } }>
+    'ContentModeration': EventHandler<{ requestId: string; summary?: { text: string } }, { topic: 'content-moderated'; data: { requestId: string } } | { topic: 'supervisor-alert'; data: { requestId: string; group: string; error: { message: string; code: string }; originalInput: unknown; attempt?: number } }>
+    'MetadataExtraction': EventHandler<{ requestId: string; result?: { text: string; provider: string; raw?: unknown }; metadata?: unknown }, { topic: 'content-metadata'; data: { requestId: string; metadata?: unknown } }>
     'JobStatusAPI': ApiRouteHandler<Record<string, unknown>, ApiResponse<200, { requestId: string; status: string; attempts?: number; result?: unknown; suspendedReason?: unknown }>, never>
     'ContentIngestAPI': ApiRouteHandler<Record<string, unknown>, ApiResponse<200, { requestId: string; status: string }>, { topic: 'process-content'; data: { requestId?: string; inputText: string; metadata?: unknown } }>
+    'AdminSetProviderAPI': ApiRouteHandler<Record<string, unknown>, ApiResponse<200, { success: boolean; provider: string }>, never>
+    'AdminProviderAPI': ApiRouteHandler<Record<string, unknown>, ApiResponse<200, { provider: string }>, never>
+    'JobAdminAPI': ApiRouteHandler<Record<string, unknown>, ApiResponse<200, { success: boolean; action: string }>, { topic: 'process-content'; data: { requestId?: string; inputText: string; metadata?: unknown } }>
   }
     
 }

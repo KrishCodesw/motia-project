@@ -24,17 +24,33 @@
   {
     "id": "content-flow",
     "config": {
-      "src\\content\\supervisor-agent.event.step.ts": {
-        "x": 347,
-        "y": 60
-      },
       "src\\content\\process-content.event.step.ts": {
-        "x": 604,
-        "y": 347
+        "x": 118,
+        "y": 447
       },
       "src\\content\\content-ingest.api.step.ts": {
-        "x": 0,
-        "y": 156
+        "x": -171,
+        "y": 199
+      },
+      "src\\content\\metadata-extraction.event.step.ts": {
+        "x": 262,
+        "y": 240
+      },
+      "src\\content\\summarize.event.step.ts": {
+        "x": 637,
+        "y": 394
+      },
+      "src\\content\\moderation.event.step.ts": {
+        "x": 979,
+        "y": 207
+      },
+      "src\\content\\publish.event.step.ts": {
+        "x": 1202,
+        "y": 425
+      },
+      "src\\notifications\\notify.event.step.ts": {
+        "x": 1431,
+        "y": 153
       }
     }
   }
