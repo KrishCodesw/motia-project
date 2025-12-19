@@ -24,33 +24,33 @@
   {
     "id": "content-flow",
     "config": {
-      "src\\content\\process-content.event.step.ts": {
-        "x": 118,
-        "y": 447
-      },
-      "src\\content\\content-ingest.api.step.ts": {
-        "x": -171,
-        "y": 199
-      },
-      "src\\content\\metadata-extraction.event.step.ts": {
-        "x": 262,
-        "y": 240
+      "src\\notifications\\notify.event.step.ts": {
+        "x": 1777,
+        "y": 371
       },
       "src\\content\\summarize.event.step.ts": {
-        "x": 637,
-        "y": 394
-      },
-      "src\\content\\moderation.event.step.ts": {
-        "x": 979,
-        "y": 207
+        "x": 744,
+        "y": 538
       },
       "src\\content\\publish.event.step.ts": {
-        "x": 1202,
-        "y": 425
+        "x": 1291,
+        "y": 453
       },
-      "src\\notifications\\notify.event.step.ts": {
-        "x": 1431,
-        "y": 153
+      "src\\content\\process-content.event.step.ts": {
+        "x": -12,
+        "y": 462
+      },
+      "src\\content\\moderation.event.step.ts": {
+        "x": 906,
+        "y": 150
+      },
+      "src\\content\\metadata-extraction.event.step.ts": {
+        "x": 483,
+        "y": 286
+      },
+      "src\\content\\content-ingest.api.step.ts": {
+        "x": -421,
+        "y": 427
       }
     }
   }
